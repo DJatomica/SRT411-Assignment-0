@@ -1,0 +1,140 @@
+---
+title: "SRT411A0"
+author: "Eugene Makavets"
+date: "February 12, 2019"
+output: pdf_document
+---
+
+This assignment required that I go through the provided document (the link for which is shown below), and complete the code in all the "ToDo" sections. The code is below for each section, along with the output that results from it.
+https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf
+
+3.1: This ToDo section required that I make a calculator which shows the time in percent that I spent at Seneca. The document assumes that it's 2014, but I adjusted the code to account for the fact that it's 2019:
+
+```{r}
+(2019 - 2016) / (2019 - 1996) * 100
+```
+
+3.2: This ToDo section is basically the same as the previous one, but to use variables instead of numbers to put some steps in between:
+
+```{r}
+birth = 1996
+collegestart = 2016
+currentyear = 2019
+a = (currentyear - collegestart) / (currentyear - birth) * 100
+a
+```
+
+3.4: This ToDo section has me make a vector of 4 specific numbers, combine them with a function, and then get the sum of them with a function:
+
+```{r}
+b=c(4,5,8,11)
+sum(x=b)
+```
+
+3.5: This ToDo section had me plot 100 random numbers onto a graph:
+
+```{r}
+x = rnorm(100)
+plot(x)
+```
+
+4: This ToDo section had me find help for the sqrt function, but it seems for some reason that help code isn't knitted to the PDF:
+
+```{r}
+help(sqrt)
+```
+
+5: This ToDo section had me make a script that does the same thing as ToDo 3.5, and then use source to run it multiple times. Note that the assignment instructions do not tell me to save this script on my Github, but I will regardless:
+
+```{r}
+source("firstscript.R")
+source("firstscript.R")
+source("firstscript.R")
+```
+
+6.2: This ToDo section had me put numbers 31 - 60 into a vector (using the seq function), and then in a matrix with a specific number of rows and columns:
+
+```{r}
+P = seq(from = 31, to = 60, by = 1)
+Q = matrix(data = P, nrow = 6, ncol = 5)
+Q
+```
+
+6.3: This ToDo section had me make a "script" which has 3 random numbers from 1-100, and then make a data frame with 3 columns that performs specific math functions on these numbers. Note that despite this ToDo telling me to put it in a script and run it multiple times (like ToDo 5), I will instead put the code here and run it once. All questions that require a seperate script will do this for the sake of making plotting easier, and so I only have to submit one extra script with the assignment:
+
+```{r}
+x1=seq(from = 1, to = 100, by = 1)
+x2=seq(from = 101, to = 200, by = 1)
+x3=seq(from = 201, to = 300, by = 1)
+t=data.frame(a = x1, b = x1 + x2 , c = x1 + x2 + x3)
+plot(t)
+```
+
+6.4: This ToDo section had me add some lines from the PDF into the previous section, and figure out what the function of rgb, which creates colours based on intensities of red, blue, and green:
+
+```{r}
+x1=seq(from = 1, to = 100, by = 1)
+x2=seq(from = 101, to = 200, by = 1)
+x3=seq(from = 201, to = 300, by = 1)
+t=data.frame(a = x1, b = x1 + x2 , c = x1 + x2 + x3)
+plot(t$a, type="l", ylim=range(t), lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2, col=rgb(0.3,0.4,0.3,0.9))
+points(t$c, pch=20, cex=4, col=rgb(0,0,1,0.3))
+```
+
+8: This ToDo section had me make a Notepad file and then store it in the working directory, then write a script to read it, and to multiply the column g by 5 and to store it as tst2.txt:
+
+```{r}
+d = data.frame(g = c(3,4,5),h = c(12,43,54))
+write.table(d, file="tst2.txt", row.names=FALSE)
+d2 = read.table(file="tst1.txt", header=TRUE)
+d2$g = d2$g * 5
+d2$g
+```
+
+9: This ToDo section has me compute the square root of a vector of 100 numbers, which it successfully does:
+
+```{r}
+sqrt(mean(rnorm(100)))
+```
+
+10.2: This ToDo section has me make a graph with on the x-axis: today, Sinterklaas 2014 and my next birthday and on the y-axis the number of presents I expect on each of these days:
+
+```{r}
+date1=strptime( c("20190112","20191021"),format="%Y%m%d")
+present=c(0,6)
+plot(date1, present)
+```
+
+11.2: This ToDo section has me make a vector from 1 to 100.  Make a for-loop which runs through the whole vector. Multiply the elements which are smaller than 5 and larger than 90 with 10 and the other elements with 0.1:
+
+```{r}
+vector=seq(from=1, to=100, by=1)
+a=c()
+for(i in 1:100) {
+  if(vector[i]<5) {
+    a[i]=vector[i]*5; }
+  else if(vector[i]>90) {
+    a[i]=vector[i]*10; }
+  else {
+    a[i]=vector[i]*0.1; } }
+a
+```
+
+11.3: The last ToDo section has me write a function for the previous ToDo so that you can feed it vectors as an argument. I have to use a for-loop in the function to do the computation with each element. The function below can be run with any made vectors:
+
+```{r}
+func1=function(arg1,arg2 ) {
+  vector[i]=arg1[i];
+  for(i in length(vector)) {
+    if(vector[i]<5) {
+      a[i]=vector[i]*5; }
+    else if(vector[i]>90) {
+      a[i]=vector[i]*10; }
+    else {
+      a[i]=vector[i]*0.1; }
+  }
+}
+```
+
+With that, the assignment is done!
